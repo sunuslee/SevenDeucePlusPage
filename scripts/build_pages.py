@@ -27,3 +27,5 @@ for key,d in D.items():
 <footer><span>© 2026 SevenDeucePlus · {d['footer']}</span><a href="{d['other']}">{d['alt']}</a></footer></body></html>'''
  out=R/('en/index.html' if key=='en' else 'index.html');out.write_text(html)
 print('Built Chinese and English pages')
+from seo_content import enhance
+enhance()
