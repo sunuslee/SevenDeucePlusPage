@@ -39,3 +39,9 @@ App JSON-LD contains no invented reviews or aggregate ratings. It describes the 
 After generation and validation, upload only `index.html`, `en/`, `guides/`, `assets/`, `img/appIcon.png`, `sitemap.xml`, `sitemap.txt`, and `robots.txt` into a new release. On macOS, use `COPYFILE_DISABLE=1 tar --no-xattrs` to exclude resource forks. Keep files world-readable and atomically switch `current` to the release. The repository, deployment scripts, and server configuration must not be uploaded into the public root.
 
 DMIT release: `20261021-dmit`. For content rollback, switch `current` to a retained prior release. To remove website routing, remove only `72plus.pro.caddy` from the imported directory, validate `/etc/caddy/Caddyfile`, and reload Caddy. Never overwrite the API site files.
+
+### Cutover verified — 2026-10-21
+
+Both apex and www resolve to DMIT via Google's public DNS. DMIT has valid HTTPS certificates; all six pages return 200, and www redirects to the apex. Search Console ownership is verified for https://72plus.pro/; sitemap.xml reports **Success**, with **6 discovered pages** (discovery does not mean all pages are indexed).
+
+The temporary Aliyun website import was removed and its Caddy service reloaded successfully. Its site config is retained as `/etc/caddy-sites/72plus.pro.caddy.disabled-20261021`, and files are archived at `/srv/sevendeuceplus-site.retired-20261021`. Existing API routes were preserved.
