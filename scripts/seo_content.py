@@ -66,4 +66,6 @@ def enhance():
  for url in urls:
   node=ET.SubElement(root,'{'+ns+'}url');ET.SubElement(node,'{'+ns+'}loc').text=url;ET.SubElement(node,'{'+ns+'}lastmod').text='2026-10-21'
  ET.ElementTree(root).write(R/'sitemap.xml',encoding='utf-8',xml_declaration=True)
+ # Plain-text alternative supported by Google; generated from the same canonical URLs.
+ (R/'sitemap.txt').write_text('\n'.join(urls)+'\n',encoding='utf-8')
 if __name__=='__main__':enhance()

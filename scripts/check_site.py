@@ -21,6 +21,7 @@ class Page(HTMLParser):
   if self.injson:self.jsons.append(json.loads(d))
 urls=[e.text for e in ET.parse(ROOT/'sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
 assert len(urls)==len(set(urls))==6
+assert (ROOT/'sitemap.txt').read_text(encoding='utf-8').splitlines()==urls
 for url in urls:
  rel=url.removeprefix(BASE);path=ROOT/rel/'index.html';p=Page();p.feed(path.read_text());assert p.h1==1 and p.canonical==[url]
  assert set(p.alt)=={'en','zh-Hans','x-default'}
