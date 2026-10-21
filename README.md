@@ -30,12 +30,12 @@ App JSON-LD contains no invented reviews or aggregate ratings. It describes the 
 
 ## Production deployment
 
-- SSH host: `aliyun-ecs` (the existing DNS target for `72plus.pro`).
+- SSH host: `dmit` (`154.26.179.8`). The apex and `www` DNS A records must point here.
 - Public files: `/srv/sevendeuceplus-site/current`, a symlink to a versioned directory under `releases/`.
-- Site config: `/etc/caddy-sites/72plus.pro.caddy` (source: `deploy/72plus.pro.caddy`).
-- Existing Caddy service: `baby-voice-diary-ai-caddy.service`; its main configuration imports this site separately. Do not replace the main config or existing API blocks.
+- Site config: `/etc/caddy/sites-enabled/72plus.pro.caddy` (source: `deploy/72plus.pro.caddy`).
+- Existing Caddy service: `caddy.service`; `/etc/caddy/Caddyfile` imports `sites-enabled/*.caddy`. Do not replace the main config or existing API blocks.
 - Caddy issues/renews HTTPS certificates; `www` redirects permanently to the apex while preserving the path.
 
-After generation and validation, upload only `index.html`, `en/`, `guides/`, `assets/`, `img/appIcon.png`, `sitemap.xml`, `sitemap.txt`, and `robots.txt` into a new release. On macOS, use `COPYFILE_DISABLE=1 tar` to exclude resource forks. Keep files world-readable and atomically switch `current` to the release. The repository, deployment scripts, and server configuration must not be uploaded into the public root.
+After generation and validation, upload only `index.html`, `en/`, `guides/`, `assets/`, `img/appIcon.png`, `sitemap.xml`, `sitemap.txt`, and `robots.txt` into a new release. On macOS, use `COPYFILE_DISABLE=1 tar --no-xattrs` to exclude resource forks. Keep files world-readable and atomically switch `current` to the release. The repository, deployment scripts, and server configuration must not be uploaded into the public root.
 
-First deployment: `20261021-domain`. Main Caddy config backup: `/etc/baby-voice-diary-ai-api.caddy.before-72plus-20261021`. To undo first-time routing, restore that backup and reload the existing Caddy service. For later content rollbacks, switch `current` to the retained prior release. Always validate Caddy config before reload.
+DMIT release: `20261021-dmit`. For content rollback, switch `current` to a retained prior release. To remove website routing, remove only `72plus.pro.caddy` from the imported directory, validate `/etc/caddy/Caddyfile`, and reload Caddy. Never overwrite the API site files.
