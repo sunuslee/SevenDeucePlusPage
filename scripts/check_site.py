@@ -2,7 +2,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
 import json,xml.etree.ElementTree as ET
-ROOT=Path(__file__).resolve().parents[1];BASE='https://sunuslee.github.io/SevenDeucePlusPage/'
+ROOT=Path(__file__).resolve().parents[1];BASE='https://72plus.pro/'
 class Page(HTMLParser):
  def __init__(self):super().__init__();self.refs=[];self.ids=set();self.canonical=[];self.alt={};self.h1=0;self.images=[];self.jsons=[];self.injson=False
  def handle_starttag(self,t,attrs):

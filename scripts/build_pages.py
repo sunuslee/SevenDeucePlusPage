@@ -1,7 +1,7 @@
 from pathlib import Path
 from html import escape
 R=Path(__file__).resolve().parents[1]
-URL='https://sunuslee.github.io/SevenDeucePlusPage/'
+URL='https://72plus.pro/'
 STORE='https://apps.apple.com/app/id6460033253'
 D={
 'zh':dict(lang='zh-Hans',name='德益记',tag='SevenDeucePlus · 为热爱德扑的你',title='每一场牌局，<br>都值得记录。',intro='记下输赢，轻松结算，回看关键决策。从朋友间的一场牌局，到长期的进步，德益记陪你一起整理。',download='前往 App Store',explore='看看有哪些功能',small='适用于 iPhone 和 iPad · 免费下载 · 含 App 内购买',nav=['功能','付费说明','联系与反馈'],story='从记下结果，到看懂过程',storysub='把牌桌上的细节，留给下一次更好的复盘。',features=[('盈利记录','看清每一场，也看见长期。','记录买入、结算和盈亏，通过收益曲线与历史记录回顾自己的表现。',['牌局历史','收益趋势'],'overview'),('记分板与结算','一桌人的账，一次算清。','集中记录每位玩家的买入与带出，核对总额、整理净结果，分享给同桌朋友。',['买入与带出','多人结算'],'scoreboard'),('PRO PLAY','好奇高手怎么打？<br>去看看真实牌局。','按选手、手牌和位置查找真实样本，探索 Tan Xuan、Wiktor 等选手的起手牌范围。收藏值得回看的手牌，打开原视频继续研究。',['选手与手牌筛选','范围矩阵','原视频'],'proplay-tanxuan'),('INSIGHTS','带上你的思考，<br>重新看一遍这手牌。','逐步录入行动，补充对手风格与现场信息，用 AI 反馈辅助复盘。AI 可能出错，请结合自己的判断。',['逐步记录行动','对手信息','AI 复盘'],'manual-confirm')],friends='下次组局，从熟悉的朋友开始。',friendbody='Friends 鱼塘牌友：保存头像、风格标签和备注，结算时直接添加熟悉的玩家，少一些重复输入。',price='先体验，再选择适合你的方式。',pricebody='App 免费下载，免费使用有额度限制。PRO PLAY 提供总计 7 次免费查询，之后可通过符合条件的订阅或 BB 点数继续使用。Insights 分析单独消耗 BB 点数，订阅不等于无限 AI 分析。具体方案、额度与当地价格以 App 内购买页面为准。',contact='一起把它做得更好。',contactbody='德益记已有稳定使用的玩家，我们也在持续迭代。欢迎告诉我们遇到的问题、想要的功能，或你真实的使用感受。',mail='发送反馈',qr='扫码下载，或在 App Store 搜索 SevenDeucePlus',note='页面使用当前客户端真实截图与示例数据；截图为英文界面，App 支持中文和英文。',footer='记录牌局，享受过程。',alt='English',other='en/'),

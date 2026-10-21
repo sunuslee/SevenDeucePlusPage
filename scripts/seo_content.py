@@ -3,7 +3,7 @@ from html import escape
 import json
 import xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1]
-BASE='https://sunuslee.github.io/SevenDeucePlusPage/'
+BASE='https://72plus.pro/'
 GUIDES={
 'session-tracking':{
 'zh':('德州扑克盈亏怎么记录？牌局记录与收益复盘指南','德州扑克盈亏记录：从单场结果到长期复盘','每场牌局先把买入、追加买入和带出金额记清楚，再看长期变化。',[
@@ -68,4 +68,5 @@ def enhance():
  ET.ElementTree(root).write(R/'sitemap.xml',encoding='utf-8',xml_declaration=True)
  # Plain-text alternative supported by Google; generated from the same canonical URLs.
  (R/'sitemap.txt').write_text('\n'.join(urls)+'\n',encoding='utf-8')
+ (R/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: '+BASE+'sitemap.xml\n',encoding='utf-8')
 if __name__=='__main__':enhance()
