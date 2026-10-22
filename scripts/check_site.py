@@ -20,7 +20,7 @@ class Page(HTMLParser):
  def handle_data(self,d):
   if self.injson:self.jsons.append(json.loads(d))
 urls=[e.text for e in ET.parse(ROOT/'sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
-assert len(urls)==len(set(urls))==6
+assert len(urls)==len(set(urls))==10
 assert (ROOT/'sitemap.txt').read_text(encoding='utf-8').splitlines()==urls
 for url in urls:
  rel=url.removeprefix(BASE);path=ROOT/rel/'index.html';p=Page();p.feed(path.read_text());assert p.h1==1 and p.canonical==[url]
@@ -39,7 +39,7 @@ for url in urls:
   assert len(shots)==7
   assert all(('/zh/' in s)==(rel=='') for s in shots)
  print(rel or '/', 'PASS: links, canonical, hreflang, structure, screenshot locale')
-print('Sitemap: 6 canonical URLs. JSON-LD parsed. No fake ratings included.')
+print('Sitemap: 10 canonical URLs. JSON-LD parsed. No fake ratings included.')
 
 # Migration destinations must match production canonical pages; production must not redirect.
 from build_redirects import ROOT as LEGACY_ROOT, PATHS

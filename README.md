@@ -20,9 +20,9 @@ The Chinese and English pages use matching language screenshots, exported with t
 
 ## Search discovery
 
-Run `python3 scripts/check_site.py` after generating pages. It checks the six sitemap URLs, internal links, canonical/hreflang relationships, JSON-LD syntax, and homepage screenshot locales. `scripts/seo_content.py` holds SEO metadata and bilingual practical guides. Chinese screenshots are in `assets/zh/`; English screenshots remain in `assets/`.
+Run `python3 scripts/check_site.py` after generating pages. It checks the ten sitemap URLs, internal links, canonical/hreflang relationships, JSON-LD syntax, and homepage screenshot locales. `scripts/seo_content.py` holds SEO metadata and bilingual practical guides. Chinese screenshots are in `assets/zh/`; English screenshots remain in `assets/`.
 
-The website has two homepages and four guide pages targeting session tracking and home-game settlement. Google ownership verification is preserved in the generated head. Do not remove that tag while the property is in use. The sitemap is published at `https://72plus.pro/sitemap.xml`.
+The website has two homepages and eight guide pages covering session tracking, home-game settlement, PRO PLAY and Insights. Google ownership verification is preserved in the generated head. Do not remove that tag while the property is in use. The sitemap is published at `https://72plus.pro/sitemap.xml`.
 
 Production robots.txt is served at https://72plus.pro/robots.txt and declares the XML sitemap. Submit https://72plus.pro/sitemap.xml in the matching Search Console property. Each GitHub Pages page uses a zero-second meta refresh and canonical pointing to its corresponding production URL. Google treats immediate meta refresh as a permanent redirect signal; this is not an HTTP 301. Keep the old site crawlable and keep its ownership verification tag.
 
@@ -50,3 +50,7 @@ The temporary Aliyun website import was removed and its Caddy service reloaded s
 ### Legacy URL migration — 2026-10-22
 
 `scripts/build_redirects.py` maps the old Chinese and English homepages and all four guides to the same paths on `https://72plus.pro/`. Both directory and `index.html` URLs are covered by these static files; GitHub Pages handles directory slash normalization. Each page has a zero-delay meta refresh, matching canonical, and a clickable fallback link. No JavaScript, noindex, or robots blocking is used. The production builder writes to a separate directory to prevent self-redirects on DMIT. Run `python3 scripts/check_site.py` to validate both outputs before publishing. The live DMIT content does not need redeployment for this migration.
+
+### Search content expansion — 2026-10-22
+
+Added bilingual PRO PLAY and Insights guides, localized real screenshots on every guide, practical FAQ examples and related-guide links. Production sitemap now contains 10 URLs. Legacy redirects still cover only the original six URLs. No analytics tracker has been installed; Search Console reports search visibility, not app installs.
