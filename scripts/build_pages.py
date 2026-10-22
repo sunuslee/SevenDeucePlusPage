@@ -1,6 +1,12 @@
 from pathlib import Path
 from html import escape
-R=Path(__file__).resolve().parents[1]
+import shutil
+REPO=Path(__file__).resolve().parents[1]
+R=REPO/'build'/'production'
+(R/'en').mkdir(parents=True,exist_ok=True)
+(R/'img').mkdir(exist_ok=True)
+shutil.copytree(REPO/'assets',R/'assets',dirs_exist_ok=True)
+shutil.copy2(REPO/'img'/'appIcon.png',R/'img'/'appIcon.png')
 URL='https://72plus.pro/'
 STORE='https://apps.apple.com/app/id6460033253'
 D={
@@ -27,5 +33,10 @@ for key,d in D.items():
 <footer><span>© 2026 SevenDeucePlus · {d['footer']}</span><a href="{d['other']}">{d['alt']}</a></footer></body></html>'''
  out=R/('en/index.html' if key=='en' else 'index.html');out.write_text(html)
 print('Built Chinese and English pages')
-from seo_content import enhance
-enhance()
+import seo_content
+seo_content.R=R
+seo_content.enhance()
+# The repository root is the legacy GitHub Pages publishing directory.
+# Never place the production content back at those URLs.
+from build_redirects import build
+build()

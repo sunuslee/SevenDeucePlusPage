@@ -2,7 +2,7 @@ from pathlib import Path
 from html import escape
 import json
 import xml.etree.ElementTree as ET
-R=Path(__file__).resolve().parents[1]
+R=Path(__file__).resolve().parents[1]/'build'/'production'
 BASE='https://72plus.pro/'
 GUIDES={
 'session-tracking':{

@@ -2,7 +2,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
 import json,xml.etree.ElementTree as ET
-ROOT=Path(__file__).resolve().parents[1];BASE='https://72plus.pro/'
+ROOT=Path(__file__).resolve().parents[1]/'build'/'production';BASE='https://72plus.pro/'
 class Page(HTMLParser):
  def __init__(self):super().__init__();self.refs=[];self.ids=set();self.canonical=[];self.alt={};self.h1=0;self.images=[];self.jsons=[];self.injson=False
  def handle_starttag(self,t,attrs):
@@ -40,3 +40,15 @@ for url in urls:
   assert all(('/zh/' in s)==(rel=='') for s in shots)
  print(rel or '/', 'PASS: links, canonical, hreflang, structure, screenshot locale')
 print('Sitemap: 6 canonical URLs. JSON-LD parsed. No fake ratings included.')
+
+# Migration destinations must match production canonical pages; production must not redirect.
+from build_redirects import ROOT as LEGACY_ROOT, PATHS
+for path in PATHS:
+ legacy=(LEGACY_ROOT/path/'index.html').read_text()
+ production=(ROOT/path/'index.html').read_text()
+ assert f'http-equiv="refresh" content="0; url={BASE+path}"' in legacy
+ assert f'rel="canonical" href="{BASE+path}"' in legacy
+ assert f'href="{BASE+path}"' in legacy
+ assert 'http-equiv="refresh"' not in production
+ assert 'noindex' not in legacy
+print('PASS: six immediate legacy redirects, matching canonical targets, no production redirect loops.')
